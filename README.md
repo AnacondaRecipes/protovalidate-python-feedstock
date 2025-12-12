@@ -1,13 +1,13 @@
-About <pkg_name>-feedstock
+About protovalidate-python-feedstock
 =======================
 
 Feedstock license: [BSD-3-Clause](LICENSE)
 
-Home: <home_url>
+Home: https://protovalidate.com
 
-Package license: <pkg_license>
+Package license: Apache License 2.0
 
-Summary: <pkg_summary>
+Summary: Protocol Buffer Validation for Python.
 
 
 Current release info
@@ -15,19 +15,19 @@ Current release info
 
 | Name | Downloads | Version | Platforms |
 | --- | --- | --- | --- |
-| [![Conda Recipe](https://img.shields.io/badge/recipe-<pkg_name>-green.svg)](https://anaconda.org/anaconda/<pkg_name>) | [![Conda Downloads](https://img.shields.io/conda/dn/anaconda/<pkg_name>.svg)](https://anaconda.org/anaconda/<pkg_name>) | [![Conda Version](https://img.shields.io/conda/vn/anaconda/<pkg_name>.svg)](https://anaconda.org/anaconda/<pkg_name>) | [![Conda Platforms](https://img.shields.io/conda/pn/anaconda/<pkg_name>.svg)](https://anaconda.org/anaconda/<pkg_name>) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-protovalidate-python-green.svg)](https://anaconda.org/anaconda/protovalidate-python) | [![Conda Downloads](https://img.shields.io/conda/dn/anaconda/protovalidate-python.svg)](https://anaconda.org/anaconda/protovalidate-python) | [![Conda Version](https://img.shields.io/conda/vn/anaconda/protovalidate-python.svg)](https://anaconda.org/anaconda/protovalidate-python) | [![Conda Platforms](https://img.shields.io/conda/pn/anaconda/protovalidate-python.svg)](https://anaconda.org/anaconda/protovalidate-python) |
 
-Installing <pkg_name>
+Installing protovalidate-python
 ==================
 
-Installing `<pkg_name>` from the main channel can be achieved by:
+Installing `protovalidate-python` from the main channel can be achieved by:
 
 ```
-conda install <pkg_name>
+conda install protovalidate-python
 ```
 
-It is possible to list all of the versions of `<pkg_name>` available on your platform with `conda`:
+It is possible to list all of the versions of `protovalidate-python` available on your platform with `conda`:
 
 ```
-conda search <pkg_name>
+conda search protovalidate-python
 ```
