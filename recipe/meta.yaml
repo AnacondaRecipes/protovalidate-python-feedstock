@@ -1,45 +1,58 @@
-{% set name = "<PLEASE ADD PKG NAME>" %}
-{% set version = "<PLEASE ADD PKG VERSION>" %}
+{% set name = "protovalidate-python" %}
+{% set version = "1.0.0" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: <sha256>
+  url: https://github.com/bufbuild/{{ name }}/archive/refs/tags/v{{ version }}.tar.gz
+  sha256: bf91e13e24aafbb1e95e3df7e0cac39ffdbca54042f172d698b1661e5be725dc
+  patches:
+    - patches/0001-Include-gen-buf-to-the-build.patch
 
 build:
   number: 0
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  skip: True  # [py<38]
+  skip: True  # [py<39]
 
 requirements:
   host:
     - python
     - pip
+    - hatchling
+    - hatch-vcs
   run:
     - python
+    - protobuf >=5
+    - cel-python >=0.2.0,<0.3.0
+    - google-re2 >=1.1.20250722 # [py==313]
+    - google-re2 >=1.1 # [py==312]
+    - google-re2 >=1   # [py<312]
 
 test:
   imports:
-    - {{ name.replace('-', '.') }}
+    - protovalidate
+  source_files:
+    - test/
+    - gen/
   requires:
     - pip
+    - pytest >=8.4.1
   commands:
     - pip check
+    - pytest -v test/
 
 about:
-  home: <PLEASE ADD HOME URL>
-  summary: <PLEASE ADD SUMMARY>
+  home: https://protovalidate.com
+  summary: Protocol Buffer Validation for Python. 
   description: |
-    <PLEASE ADD DESCRIPTION>
-  license: <PLEASE ADD LICENSE>
-  license_family: <PLEASE ADD LICENSE_FAMILY>
-  license_file: <PLEASE_ADD_LICENSE_FILE>
-  dev_url: <PLEASE ADD DEV URL>
-  doc_url: <PLEASE ADD DOC URL>
-
-extra:
-  recipe-maintainers:
-    - Jrice1317
+    Protovalidate is the semantic validation library for Protobuf.
+    It provides standard annotations to validate common rules on messages
+    and fields, as well as the ability to use CEL to write custom rules.
+    It's the next generation of protoc-gen-validate.
+  license: Apache-2.0
+  license_family: APACHE
+  license_file: LICENSE
+  dev_url: https://github.com/bufbuild/protovalidate-python
+  doc_url: https://protovalidate.com/about
