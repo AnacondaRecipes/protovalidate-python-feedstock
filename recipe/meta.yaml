@@ -1,5 +1,5 @@
 {% set name = "protovalidate-python" %}
-{% set version = "1.0.0" %}
+{% set version = "2.0.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,28 +7,29 @@ package:
 
 source:
   url: https://github.com/bufbuild/{{ name }}/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: bf91e13e24aafbb1e95e3df7e0cac39ffdbca54042f172d698b1661e5be725dc
+  sha256: 91a7d4cfd0e3007a52a3b9fd8ba7defd329ab89af7290f5db63f8ac6fc20dcca
   patches:
     - patches/0001-Include-gen-buf-to-the-build.patch
 
 build:
-  number: 1
+  number: 0
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  skip: True  # [py<39]
+  skip: true  # [py<310]
 
 requirements:
   host:
     - python
     - pip
-    - hatchling
     - hatch-vcs
+    - maturin >=1.12,<2.0
   run:
     - python
     - protobuf >=5
     - cel-python >=0.2.0,<0.3.0
-    - google-re2 >=1.1.20250722 # [py>=313]
-    - google-re2 >=1.1 # [py==312]
-    - google-re2 >=1   # [py<312]
+    - google-re2 >=1.1.20250722  # [py>=313]
+    - google-re2 >=1.1  # [py==312]
+    - google-re2 >=1  # [py<312]
+    - protobuf-py >=0.2.0
 
 test:
   imports:
@@ -45,7 +46,7 @@ test:
 
 about:
   home: https://protovalidate.com
-  summary: Protocol Buffer Validation for Python. 
+  summary: Protocol Buffer Validation for Python.
   description: |
     Protovalidate is the semantic validation library for Protobuf.
     It provides standard annotations to validate common rules on messages
