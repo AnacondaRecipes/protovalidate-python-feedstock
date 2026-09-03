@@ -1,4 +1,5 @@
 {% set name = "protovalidate-python" %}
+{% set pypi_name = "protovalidate" %}
 {% set version = "2.0.0" %}
 
 package:
@@ -6,10 +7,8 @@ package:
   version: {{ version }}
 
 source:
-  url: https://github.com/bufbuild/{{ name }}/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: 91a7d4cfd0e3007a52a3b9fd8ba7defd329ab89af7290f5db63f8ac6fc20dcca
-  patches:
-    - patches/0001-Include-gen-buf-to-the-build.patch
+  url: https://pypi.io/packages/source/{{ pypi_name[0] }}/{{ pypi_name }}/protovalidate-{{ version }}.tar.gz
+  sha256: f2fce76be2afc91f1c2f57b0d1bba26a1681cf687ba387a3a4bea6a69e13a805
 
 build:
   number: 0
@@ -17,18 +16,16 @@ build:
   skip: true  # [py<310]
 
 requirements:
+  build:
+    - {{ stdlib('c') }}
+    - {{ compiler('cxx') }}
+    - {{ compiler('rust') }}
   host:
     - python
     - pip
-    - hatch-vcs
     - maturin >=1.12,<2.0
   run:
     - python
-    - protobuf >=5
-    - cel-python >=0.2.0,<0.3.0
-    - google-re2 >=1.1.20250722  # [py>=313]
-    - google-re2 >=1.1  # [py==312]
-    - google-re2 >=1  # [py<312]
     - protobuf-py >=0.2.0
 
 test:
@@ -36,7 +33,6 @@ test:
     - protovalidate
   source_files:
     - test/
-    - gen/
   requires:
     - pip
     - pytest >=8.4.1
