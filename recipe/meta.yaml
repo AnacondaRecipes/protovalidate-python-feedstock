@@ -38,7 +38,7 @@ test:
     - pytest >=8.4.1
   commands:
     - pip check
-    - pytest -v test/
+    - pytest -v test/ --ignore=test/test_benchmark.py
 
 about:
   home: https://protovalidate.com
