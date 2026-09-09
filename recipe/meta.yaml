@@ -38,7 +38,9 @@ test:
     - pytest >=8.4.1
   commands:
     - pip check
-    - pytest -v test/ --ignore=test/test_benchmark.py
+    # test_benchmark.py needs pydantic (dev-only, not a real dependency)
+    # test_conformance.py shells out to `go run` and needs network access
+    - pytest -v test/ --ignore=test/test_benchmark.py --ignore=test/conformance/test_conformance.py
 
 about:
   home: https://protovalidate.com
