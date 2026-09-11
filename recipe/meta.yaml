@@ -24,11 +24,13 @@ requirements:
     - hatch-vcs
   run:
     - python
+    - cel-python >=0.5
+    - google-re2 >=1
+    - google-re2 >=1.1           # [py==312]
+    - google-re2 >=1.1.20250722  # [py==313]
+    - google-re2 >=1.1.20251105  # [py==314]
     - protobuf >=5
-    - cel-python >=0.2.0,<0.3.0
-    - google-re2 >=1.1.20250722 # [py>=313]
-    - google-re2 >=1.1 # [py==312]
-    - google-re2 >=1   # [py<312]
+    - protobuf >=6.31.0  # [py>=314]
 
 test:
   imports:
