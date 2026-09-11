@@ -1,5 +1,5 @@
 {% set name = "protovalidate-python" %}
-{% set version = "1.0.0" %}
+{% set version = "1.2.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,12 +7,12 @@ package:
 
 source:
   url: https://github.com/bufbuild/{{ name }}/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: bf91e13e24aafbb1e95e3df7e0cac39ffdbca54042f172d698b1661e5be725dc
+  sha256: 38d60a244d7c2fbd8cef310af0775438c464c7f4315ef85420a31b8e88e81b24
   patches:
     - patches/0001-Include-gen-buf-to-the-build.patch
 
 build:
-  number: 1
+  number: 0
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   skip: True  # [py<39]
 
